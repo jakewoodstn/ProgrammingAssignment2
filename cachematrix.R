@@ -16,18 +16,13 @@ makeCacheMatrix <- function(x = matrix()) {
 
 
 ## cacheSolve solves for the inverse if necessary and caches the value, 
-##otherwise reads and returns cached value
+##otherwise reads and returns cached valueis.
 
 cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
+       ## Return error if x is not a cacheMatrix
+       if (!is.list(x) || is.null(x$get)) {stop("Object type cacheMatrix expected")}
      
-     ##safety - if non list is passed in (makeCacheMatrix not called)
-     ##then call it.
-     repx<-x
-     if (!is.list(x)){
-          repx<-makeCacheMatrix(x)
-     }
-     x<-repx
+        ## Return a matrix that is the inverse of 'x'
      
      inv <- x$getInv()
      if(!is.null(inv)){
